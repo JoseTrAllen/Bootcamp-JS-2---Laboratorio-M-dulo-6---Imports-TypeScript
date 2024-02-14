@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Juego 7 y 1/2</title>
   </head>
   <body>
-    <div id="app">
-      <h1>TypeScript Sandbox</h1>
+    <div class="titulo-juego">
+      <h1>JUEGO DEL SIETE Y MEDIO</h1>
+        <details class="desplegable">
+          <summary>¿Cómo se juega?</summary>
+          <p>El objetivo del juego es tener una mano que sume 7 y media puntos o lo más cerca posible de este número sin pasarse. <br> Para ello deberás ir cogiendo cartas hasta conseguir llegar a siete puntos y medio o lo más cerca posible. En el momento que quieras puedes plantarte. Si te pasas de siete puntos y medio perderás la partida. Cada carta vale su valor nominal menos las figuras, que valen medio punto.</p>
+        </details>
     </div>
+    <section class="flex-container">
+      <div class="left-container">
+        <div class="carta-container">
+          <img id="imagen-carta" src="https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg" alt="">
+          <button id="boton-pedir-carta" class="boton-container">DAME CARTA</button>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="top-box">
+          <h2>Puntos:</h2>
+          <h2 id="puntuacion">0</h2>
+          <button id="boton-plantarse" class="boton-container">PLANTARSE</button>
+          <p id="mensaje-al-jugador"></p>
+        </div>
+        <div class="button-box">
+          <button id="boton-volver-jugar" class="boton-container">VOLVER A JUGAR</button>
+          <button id="boton-que-pasaria" class="boton-container">QUÉ HUBIESE PASADO</button>
+        </div>
+      </div>
+    </section>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
