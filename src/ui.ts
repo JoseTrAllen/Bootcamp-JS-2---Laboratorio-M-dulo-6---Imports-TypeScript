@@ -1,10 +1,62 @@
-import {partida} from "./model"
+import {partida, setPuntos} from "./model"
 
-import {plantarse, procesoJuego,} from "./motor"
+import {generarNumero, obtenerNumero, obtenerPuntosCarta, sumarPuntuacion} from "./motor"
 
 export const mostrarFotoCarta = document.getElementById("imagen-carta");
 export const mensajeAlJugador = document.getElementById("mensaje-al-jugador");
 export const idPuntuacion = document.getElementById("puntuacion");
+
+export function pintaCarta (numeroCarta: number) {
+  switch (numeroCarta) {
+    case 1:
+      return partida.asDeCopas;
+    case 2:
+      return partida.dosDeCopas;
+    case 3:
+      return partida.tresDeCopas;
+    case 4:
+      return partida.cuatroDeCopas;
+    case 5:
+      return partida.cincoDeCopas;
+    case 6:
+      return partida.seisDeCopas;
+    case 7:
+      return partida.sieteDeCopas;
+    case 10:
+      return partida.sotaDeCopas;
+    case 11:
+      return partida.caballoDeCopas;
+    case 12:
+      return partida.reyDeCopas;
+    default:
+      return partida.cartaTrasera;    
+  }
+}
+
+export function plantarse () {
+  if (partida.puntos <= 4.5) {
+    mostrarMensajePlantarse("Has sido muy conservador");
+  }
+  if (partida.puntos === 5 || partida.puntos === 5.5) {
+    mostrarMensajePlantarse("Te ha entrado el canguelo ¿eh?");
+  }
+  if (partida.puntos === 6 || partida.puntos === 6.5 || partida.puntos === 7) {
+    mostrarMensajePlantarse("Casi casi...");
+  }
+  deshabilitarBotonesAlPlantarse ();
+}
+
+export function procesoJuego () {
+  let numeroRandom = generarNumero();
+  numeroRandom = obtenerNumero(numeroRandom);
+  let tipoCarta = pintaCarta(numeroRandom);
+  muestraCarta(tipoCarta);
+  let puntosCarta = obtenerPuntosCarta(numeroRandom);
+  let puntosSumados = sumarPuntuacion(puntosCarta);
+  setPuntos(puntosSumados);
+  mostrarPuntuacion();
+  gestionarFinalPartida ();
+}
 
 export function muestraCarta (urlCarta: string) {
   if (mostrarFotoCarta !== undefined && 
@@ -154,6 +206,16 @@ if (botonQuePasaria !== null &&
     elementoBotonQuePasaria !== undefined && 
     elementoBotonQuePasaria instanceof HTMLButtonElement) {
     elementoBotonQuePasaria.style.display = "none";
+  }
+}
+
+export function gestionarFinalPartida () {
+  if (partida.puntos === 7.5) {
+    ganarPartida();
+  }
+
+  if (partida.puntos > 7.5) {
+    perderPartida();
   }
 }
 

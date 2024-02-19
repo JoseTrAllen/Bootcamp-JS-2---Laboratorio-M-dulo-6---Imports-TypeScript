@@ -28,3 +28,7 @@ export const partida: Partida = {
   reyDeCopas: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg"
 }
 
+export function setPuntos (nuevosPuntos: number) {
+  return partida.puntos = nuevosPuntos;
+}
+

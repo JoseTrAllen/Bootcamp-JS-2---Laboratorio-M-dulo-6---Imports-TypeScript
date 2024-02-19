@@ -1,5 +1,5 @@
 
-import {procesoJuego} from "./motor"
+import {procesoJuego} from "./ui"
 
 const botonPedirCarta = document.getElementById("boton-pedir-carta");
 if (botonPedirCarta !== null && 
